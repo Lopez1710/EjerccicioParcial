@@ -16,6 +16,87 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `estudiante`
+--
+
+DROP TABLE IF EXISTS `estudiante`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `estudiante` (
+  `idEstudiante` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(45) DEFAULT NULL,
+  `Apellido` varchar(45) DEFAULT NULL,
+  `Usuario` varchar(45) DEFAULT NULL,
+  `Pass` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idEstudiante`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estudiante`
+--
+
+LOCK TABLES `estudiante` WRITE;
+/*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
+INSERT INTO `estudiante` VALUES (10,'denis','Lopez',NULL,NULL),(11,'Eduardo','da4660701a8f38bf4956342c95d87d21',NULL,NULL),(12,'pepe','lopez','juan','81dc9bdb52d04dc20036dbd8313ed055'),(13,'julieta','ramirez','july','d93591bdf7860e1e4ee2fca799911215'),(14,'julieta','ramirez','juan','81dc9bdb52d04dc20036dbd8313ed055');
+/*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `materia`
+--
+
+DROP TABLE IF EXISTS `materia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `materia` (
+  `idmateria` int NOT NULL AUTO_INCREMENT,
+  `NombreMateria` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idmateria`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materia`
+--
+
+LOCK TABLES `materia` WRITE;
+/*!40000 ALTER TABLE `materia` DISABLE KEYS */;
+INSERT INTO `materia` VALUES (1,'PrograIII');
+/*!40000 ALTER TABLE `materia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nota`
+--
+
+DROP TABLE IF EXISTS `nota`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nota` (
+  `idnota` int NOT NULL AUTO_INCREMENT,
+  `nota` varchar(45) DEFAULT NULL,
+  `IdMateria` int DEFAULT NULL,
+  `IdEstudiante` int DEFAULT NULL,
+  PRIMARY KEY (`idnota`),
+  KEY `fk_nota_materia_idx` (`IdMateria`),
+  KEY `fk_nota_estudiante1_idx` (`IdEstudiante`),
+  CONSTRAINT `fk_nota_estudiante1` FOREIGN KEY (`IdEstudiante`) REFERENCES `estudiante` (`idEstudiante`),
+  CONSTRAINT `fk_nota_materia` FOREIGN KEY (`IdMateria`) REFERENCES `materia` (`idmateria`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nota`
+--
+
+LOCK TABLES `nota` WRITE;
+/*!40000 ALTER TABLE `nota` DISABLE KEYS */;
+INSERT INTO `nota` VALUES (1,'9',1,10);
+/*!40000 ALTER TABLE `nota` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping routines for database 'estudiante'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `SP_I_ESTUDIANTE` */;
@@ -106,4 +187,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-22 17:41:33
+-- Dump completed on 2022-03-22 18:22:28
